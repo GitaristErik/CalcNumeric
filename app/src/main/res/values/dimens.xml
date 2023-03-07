@@ -2,4 +2,23 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Margins -->
+    <dimen name="margin.small.extra">4dp</dimen>
+    <dimen name="margin.small">8dp</dimen>
+    <dimen name="margin.standard">16dp</dimen>
+    <dimen name="margin.large">24dp</dimen>
+    <dimen name="margin.large.extra">32dp</dimen>
+    <dimen name="margin.large.extra.double">40dp</dimen>
+
+    <!-- Padding -->
+    <dimen name="padding.small.extra">4dp</dimen>
+    <dimen name="padding.small">8dp</dimen>
+    <dimen name="padding.standard">16dp</dimen>
+    <dimen name="padding.large">24dp</dimen>
+    <dimen name="padding.large.extra">32dp</dimen>
+    <dimen name="padding.large.extra.double">40dp</dimen>
+
+    <!-- Other -->
+    <dimen name="tab_corner_radius">500dp</dimen>
 </resources>
