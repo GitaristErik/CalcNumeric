@@ -1,4 +1,4 @@
-package com.example.calcnumeric.ui.dashboard
+package com.example.calcnumeric.presenter.fragment.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
