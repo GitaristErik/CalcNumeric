@@ -16,8 +16,8 @@ abstract class BaseViewModelFragment<VB : ViewBinding, VD, VM : BaseViewModel<VD
     protected abstract val viewModel: VM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        log.d("base with ViewModel")
         super.onViewCreated(view, savedInstanceState)
-        log.d("onViewCreated: base with ViewModel")
         observeData()
     }
 

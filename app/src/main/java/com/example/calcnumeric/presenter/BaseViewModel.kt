@@ -10,8 +10,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 abstract class BaseViewModel<T>(initial: T) : ViewModel() {
+
+    protected open val screenName: String get() = javaClass.simpleName
+    protected val log: Timber.Tree
+        get() {
+            val methodName = Thread.currentThread().stackTrace[3].methodName
+            return Timber.tag("${screenName}::${methodName}")
+        }
+
     // Runner
     private var mainJob: Job? = null
 

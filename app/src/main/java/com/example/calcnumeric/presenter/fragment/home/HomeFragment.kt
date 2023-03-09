@@ -2,12 +2,8 @@ package com.example.calcnumeric.presenter.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.calcnumeric.databinding.FragmentHomeBinding
 import com.example.calcnumeric.presenter.fragment.BaseViewModelFragment
 import com.example.calcnumeric.presenter.fragment.home.HomeViewModel.ViewData
@@ -26,10 +22,10 @@ class HomeFragment : BaseViewModelFragment<FragmentHomeBinding, ViewData, HomeVi
     }
 
     override fun initializeView() {
-        log.d("initializeView")
+        log.d(" ")
     }
 
     override fun render(data: ViewData) {
-        log.d("render")
+        log.d(" ")
     }
 }
