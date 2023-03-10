@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">CalcNumeric</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <string name="home.title">Home</string>
+
+    <string name="history.title">History</string>
+    <string name="history.menu.clear.button">Clear</string>
+    <string name="history.item.swipe.undo.title">Removed</string>
+    <string name="history.item.swipe.undo.button">UNDO</string>
+    <string name="history.no_history.title">No History</string>
+
+    <string name="settings.title">Settings</string>
 </resources>
