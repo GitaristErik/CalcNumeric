@@ -7,7 +7,7 @@
     <string name="history.menu.clear.button">Clear</string>
     <string name="history.item.header.today">Today</string>
     <string name="history.item.menu.delete.button">Delete</string>
-    <string name="history.item.swipe.undo.title">Removed</string>
+    <string name="history.item.swipe.undo.title">Expression was removed</string>
     <string name="history.item.swipe.undo.button">UNDO</string>
     <string name="history.no_history.title">No History</string>
     <string name="history.modal.message">All history will be deleted. Do you want to proceed?</string>

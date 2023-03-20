@@ -6,6 +6,7 @@ import com.example.calcnumeric.domain.model.Results
 import com.example.calcnumeric.domain.usecase.ClearHistoryUseCase
 import com.example.calcnumeric.domain.usecase.DeleteHistoryByIdUseCase
 import com.example.calcnumeric.domain.usecase.GetHistoryAllUseCase
+import com.example.calcnumeric.domain.usecase.RestoreHistoryUseCase
 import com.example.calcnumeric.presenter.BaseViewModel
 import com.example.calcnumeric.presenter.fragment.history.HistoryViewModel.ViewData
 import com.example.calcnumeric.presenter.model.HistoryUiModel
@@ -19,6 +20,7 @@ class HistoryViewModel @Inject constructor(
     private val getHistoryListUseCase: GetHistoryAllUseCase,
     private val deleteHistoryByIdUseCase: DeleteHistoryByIdUseCase,
     private val clearHistoryUseCase: ClearHistoryUseCase,
+    private val restoreHistoryUseCase: RestoreHistoryUseCase,
     private val dispatcher: DispatcherProvider
 ) : BaseViewModel<ViewData>(ViewData()) {
 
@@ -101,6 +103,24 @@ class HistoryViewModel @Inject constructor(
 
             is Results.Loading -> {
                 log.d("delete loading")
+            }
+        }
+    }
+
+    fun restoreHistory(history: History) = safeRunJob(dispatcher.default()) {
+        log.d("call with history: $history")
+        when (restoreHistoryUseCase(history)) {
+            is Results.Success -> {
+                log.d("restore success")
+                fetch()
+            }
+
+            is Results.Failure -> {
+                log.d("restore failed")
+            }
+
+            is Results.Loading -> {
+                log.d("restore loading")
             }
         }
     }

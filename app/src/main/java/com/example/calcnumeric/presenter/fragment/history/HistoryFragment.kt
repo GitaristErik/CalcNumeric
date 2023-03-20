@@ -1,6 +1,5 @@
 package com.example.calcnumeric.presenter.fragment.history
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -12,15 +11,19 @@ import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.calcnumeric.R
 import com.example.calcnumeric.databinding.FragmentHistoryBinding
+import com.example.calcnumeric.domain.model.History
 import com.example.calcnumeric.domain.model.Results
 import com.example.calcnumeric.presenter.fragment.BaseViewModelFragment
 import com.example.calcnumeric.presenter.fragment.history.HistoryViewModel.ViewData
 import com.example.calcnumeric.presenter.fragment.history.adapter.HistoryAdapter
 import com.example.calcnumeric.presenter.fragment.history.adapter.HistoryDividerItemDecoration
+import com.example.calcnumeric.presenter.fragment.history.adapter.HistoryItemSwipeCallback
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,10 +35,16 @@ class HistoryFragment :
         get() = FragmentHistoryBinding::inflate
 
     private val historyAdapter by lazy {
-        HistoryAdapter {
-            log.d("clicked: $it")
-            viewModel.setClickedExpression(it.expression)
-        }
+        HistoryAdapter(
+            itemClickListener = {
+                log.d("clicked: $it")
+                viewModel.setClickedExpression(it.expression)
+            },
+            itemRemovedListener = {
+                viewModel.deleteHistoryById(it.id)
+                showRestoreSnackbar(it)
+            }
+        )
     }
 
     override fun initializeView() {
@@ -43,21 +52,30 @@ class HistoryFragment :
         setupAdapter()
     }
 
-    @SuppressLint("ResourceType")
-    private fun setupAdapter() {
-        binding.rvHistory.apply {
-            layoutManager = LinearLayoutManager(context).apply {
-                stackFromEnd = true
-            }
-            adapter = historyAdapter
-            val itemDecorator =
-                HistoryDividerItemDecoration(context, LinearLayoutManager.VERTICAL).apply {
-                    val pad = resources.getDimensionPixelOffset(R.dimen.margin_large_extra_double)
-                    dividerInsetEnd = pad
-                    dividerInsetStart = pad
-                }
-            addItemDecoration(itemDecorator)
+    private fun setupAdapter(): Unit = binding.rvHistory.run {
+        layoutManager = LinearLayoutManager(context).apply {
+            stackFromEnd = true
         }
+
+        adapter = historyAdapter
+
+        val itemDecorator = HistoryDividerItemDecoration(
+            context,
+            LinearLayoutManager.VERTICAL
+        ).apply {
+            val pad = resources.getDimensionPixelOffset(R.dimen.margin_large_extra_double)
+            dividerInsetEnd = pad
+            dividerInsetStart = pad
+        }
+        addItemDecoration(itemDecorator)
+
+        val swipeCallback = HistoryItemSwipeCallback(
+            context,
+            historyAdapter,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        )
+        val itemTouchHelper = ItemTouchHelper(swipeCallback)
+        itemTouchHelper.attachToRecyclerView(this)
     }
 
     override fun render(data: ViewData) {
@@ -77,6 +95,16 @@ class HistoryFragment :
                 log.d("error: ${data.uiData}")
             }
         }
+    }
+
+    private fun showRestoreSnackbar(history: History) {
+        Snackbar.make(
+            binding.root,
+            resources.getString(R.string.history_item_swipe_undo_title),
+            Snackbar.LENGTH_LONG
+        ).setAction(resources.getString(R.string.history_item_swipe_undo_button)) {
+            viewModel.restoreHistory(history)
+        }.show()
     }
 
     private fun showDeleteDialog() {
@@ -120,8 +148,8 @@ class HistoryFragment :
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val position = item.groupId
-        val history = historyAdapter.getHistoryFromGroupId(position)
-        viewModel.deleteHistoryById(history.id)
+        val history = historyAdapter.getHistoryFromId(position)
+        historyAdapter.onRemoved(history)
         return true
     }
 }

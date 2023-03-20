@@ -16,14 +16,16 @@ import com.example.calcnumeric.presenter.model.HistoryUiModel
 import com.example.calcnumeric.utils.DateFormatter
 
 class HistoryAdapter(
-    private val itemClickListener: HistoryItemClickListener
-) : ListAdapter<HistoryUiModel, RecyclerView.ViewHolder>(HistoryDiffCallback) {
+    private val itemClickListener: HistoryItemClickListener,
+    private val itemRemovedListener: HistoryItemRemovable
+) : ListAdapter<HistoryUiModel, RecyclerView.ViewHolder>(HistoryDiffCallback),
+    HistoryItemRemovable by itemRemovedListener {
 
     enum class ViewHolderType {
         HEADER, CONTENT
     }
 
-    fun getHistoryFromGroupId(position: Int) =
+    fun getHistoryFromId(position: Int) =
         (currentList[position] as HistoryUiModel.ContentModel)
             .mapToHistory()
 

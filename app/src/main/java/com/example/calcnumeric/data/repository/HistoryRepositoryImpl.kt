@@ -3,40 +3,70 @@ package com.example.calcnumeric.data.repository
 import com.example.calcnumeric.domain.model.History
 import com.example.calcnumeric.domain.model.Results
 import com.example.calcnumeric.domain.repository.HistoryRepository
-import timber.log.Timber
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import java.util.Date
+import java.util.TreeSet
 import javax.inject.Inject
 import kotlin.math.pow
 
 class HistoryRepositoryImpl @Inject constructor() : HistoryRepository {
 
-    private val historyList: MutableList<History> = mutableListOf()
+    private val historyList: TreeSet<History> = sortedSetOf(
+        compareBy(History::date)
+            .thenByDescending(History::id)
+    )
 
     init {
         historyList.addAll(loadData())
     }
 
-    override fun getAll(): Results<List<History>> {
-        return Results.Success(historyList)
+    override fun getAll(): Flow<Results<List<History>>> = flow {
+        emit(Results.Success(historyList.toList()))
     }
 
     override fun getById(id: Int): Results<History> {
-        return Results.Success(historyList.first { it.id == id })
+        return try {
+            Results.Success(historyList.first { it.id == id })
+        } catch (e: NoSuchElementException) {
+            Results.Failure(e, Results.FailureType.CLIENT)
+        }
     }
 
     override fun add(history: History): Results<Unit> {
-        historyList.add(history)
-        return Results.Success(Unit)
+        return try {
+            historyList.add(history)
+            Results.Success(Unit)
+        } catch (e: Exception) {
+            Results.Failure(e, Results.FailureType.CLIENT)
+        }
     }
 
     override fun deleteAll(): Results<Unit> {
-        historyList.clear()
-        return Results.Success(Unit)
+        return try {
+            historyList.clear()
+            Results.Success(Unit)
+        } catch (e: Exception) {
+            Results.Failure(e, Results.FailureType.CLIENT)
+        }
     }
 
     override fun deleteById(id: Int): Results<Unit> {
-        historyList.remove(historyList.first { it.id == id })
-        return Results.Success(Unit)
+        return try {
+            historyList.remove(historyList.first { it.id == id })
+            Results.Success(Unit)
+        } catch (e: NoSuchElementException) {
+            Results.Failure(e, Results.FailureType.CLIENT)
+        }
+    }
+
+    override fun restore(history: History): Results<Unit> {
+        return try {
+            historyList.add(history)
+            Results.Success(Unit)
+        } catch (e: Exception) {
+            Results.Failure(e, Results.FailureType.CLIENT)
+        }
     }
 
     private fun loadData(): List<History> {
@@ -46,7 +76,6 @@ class HistoryRepositoryImpl @Inject constructor() : HistoryRepository {
         val historyList = List(25) { index ->
             // generate a new date for each item
             val date = Date(currentDate - (index / 5) * DAY_IN_MILISECONDS).time
-            Timber.d("index: $index date: $date index % 5: ${index % 5}")
             // generate a new calculation for each item
             val expression = "${index * 5 + index.toDouble().pow(3).toInt()}+${index * 3}"
             // generate a new answer for each item
