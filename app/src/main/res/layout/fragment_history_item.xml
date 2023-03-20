@@ -1,67 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="@dimen/margin.large"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_marginVertical="@dimen/margin.standard"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/view_undo_swipe"
-        layout="@layout/fragment_history_item_swipe_undo" />
+        layout="@layout/fragment_history_item_swipe_undo"
+        android:visibility="gone" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/view_main"
-        style="@style/HistoryLayout"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/view_main_container"
+        style="@style/Widget.Material3.CardView.Filled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:background="?attr/colorSurfaceVariant"
+        android:elevation="1dp"
+        android:visibility="gone"
+        app:cardCornerRadius="@dimen/padding.standard"
+        app:contentPadding="@dimen/padding.standard"
+        tools:visibility="visible">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/date_header"
-            style="@style/TextAppearance.Material3.BodyMedium"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/view_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            tools:text="03-06-2002" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/expression"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:clickable="true"
             android:focusable="true"
-            android:gravity="end|center_vertical"
-            android:paddingHorizontal="@dimen/padding.small"
-            android:textColor="?attr/colorOnSurface"
-            android:textIsSelectable="true"
-            android:textSize="24sp"
-            tools:text="2+2" />
+            android:orientation="vertical">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/answer"
-            style="@style/TextAppearance.Material3.BodyLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:clickable="true"
-            android:textColor="?attr/colorOnSurfaceVariant"
-            android:focusable="true"
-            android:layout_marginHorizontal="@dimen/margin.small"
-            android:gravity="end|center_vertical"
-            android:padding="@dimen/padding.small"
-            android:textIsSelectable="true"
-            tools:text="4" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/expression"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginBottom="@dimen/margin.standard"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="end|center_vertical"
+                android:textColor="?attr/colorOnSurface"
+                android:textIsSelectable="true"
+                android:textSize="24sp"
+                tools:text="2+2" />
 
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="@dimen/margin.small"
-            android:visibility="gone"
-            tools:visibility="visible" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</RelativeLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/answer"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="end|center_vertical"
+                android:paddingHorizontal="@dimen/padding.small"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textIsSelectable="true"
+                tools:text="4" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.appcompat.widget.LinearLayoutCompat>

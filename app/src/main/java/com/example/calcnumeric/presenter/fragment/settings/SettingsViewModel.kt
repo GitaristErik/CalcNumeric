@@ -1,6 +1,6 @@
 package com.example.calcnumeric.presenter.fragment.settings
 
-import com.example.calcnumeric.di.DispatcherProvider
+import com.example.calcnumeric.domain.DispatcherProvider
 import com.example.calcnumeric.presenter.BaseViewModel
 import com.example.calcnumeric.presenter.fragment.settings.SettingsViewModel.ViewData
 import dagger.hilt.android.lifecycle.HiltViewModel

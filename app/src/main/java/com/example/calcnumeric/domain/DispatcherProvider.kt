@@ -1,4 +1,4 @@
-package com.example.calcnumeric.di
+package com.example.calcnumeric.domain
 
 import kotlinx.coroutines.CoroutineDispatcher
 

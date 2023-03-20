@@ -39,7 +39,6 @@
     </style>
 
     <style name="Theme.MilitaryAccountingApp" parent="Base.Theme.MilitaryAccountingApp">
-        <item name="android:statusBarColor">?attr/colorSurface</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 </resources>

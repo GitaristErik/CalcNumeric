@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Base.Theme.CalcNumeric" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color -->
@@ -41,7 +41,7 @@
     </style>
 
     <style name="Theme.CalcNumeric" parent="Base.Theme.CalcNumeric">
-        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
