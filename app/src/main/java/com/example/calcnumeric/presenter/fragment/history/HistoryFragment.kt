@@ -20,6 +20,7 @@ import com.example.calcnumeric.presenter.fragment.BaseViewModelFragment
 import com.example.calcnumeric.presenter.fragment.history.HistoryViewModel.ViewData
 import com.example.calcnumeric.presenter.fragment.history.adapter.HistoryAdapter
 import com.example.calcnumeric.presenter.fragment.history.adapter.HistoryDividerItemDecoration
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -78,6 +79,21 @@ class HistoryFragment :
         }
     }
 
+    private fun showDeleteDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setMessage(resources.getString(R.string.history_modal_message))
+            .setTitle(resources.getString(R.string.history_modal_title))
+            .setIcon(R.drawable.ic_trash_24dp)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                viewModel.clearHistory()
+            }
+            .setNegativeButton(R.string.history_modal_cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
+    }
+
     private fun setupActionBar() {
         with(requireActivity() as AppCompatActivity) {
             setSupportActionBar(binding.toolbar)
@@ -89,7 +105,7 @@ class HistoryFragment :
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
             override fun onMenuItemSelected(menuItem: MenuItem) = when (menuItem.itemId) {
                 R.id.clear_history -> {
-                    viewModel.clearHistory()
+                    showDeleteDialog()
                     true
                 }
 

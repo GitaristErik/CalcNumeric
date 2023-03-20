@@ -10,6 +10,9 @@
     <string name="history.item.swipe.undo.title">Removed</string>
     <string name="history.item.swipe.undo.button">UNDO</string>
     <string name="history.no_history.title">No History</string>
+    <string name="history.modal.message">All history will be deleted. Do you want to proceed?</string>
+    <string name="history.modal.title">Delete History</string>
+    <string name="history.modal.cancel">Cancel</string>
 
     <string name="settings.title">Settings</string>
 </resources>
