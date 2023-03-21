@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:height="24dp"
+        android:tint="?attr/colorOnSurface"
+        android:viewportHeight="24"
+        android:viewportWidth="24"
+        android:width="24dp">
+    <group
+            android:scaleX="@dimen/icon.scale"
+            android:scaleY="@dimen/icon.scale"
+            android:translateX="@dimen/icon.translate"
+            android:translateY="@dimen/icon.translate">
+        <path
+                android:fillColor="@android:color/white"
+                android:pathData="m 21.320833,18.195 h -4.56 l -4.59,-7.78 -4.5899997,7.82 h -4.56 L 10.320833,6.1066667 h 3.68 z" />
+    </group>
+</vector>

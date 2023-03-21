@@ -2,6 +2,38 @@
     <string name="app_name">CalcNumeric</string>
 
     <string name="home.title">Home</string>
+    <string name="home.button.function.sin" translatable="false">sin</string>
+    <string name="home.button.function.cos" translatable="false">cos</string>
+    <string name="home.button.function.tan" translatable="false">tan</string>
+    <string name="home.button.function.log" translatable="false">log</string>
+    <string name="home.button.function.ln" translatable="false">ln</string>
+    <string name="home.button.function.fact" translatable="false">!</string>
+    <string name="home.button.function.sqrt" translatable="false">√</string>
+    <string name="home.button.function.e" translatable="false">e</string>
+    <string name="home.button.function.pi" translatable="false">π</string>
+    <string name="home.button.function.percent" translatable="false">%</string>
+    <string name="home.button.parentheses.open" translatable="false">(</string>
+    <string name="home.button.parentheses.close" translatable="false">)</string>
+    <string name="home.button.num.sep" translatable="false">.</string>
+    <string name="home.button.num.0">0</string>
+    <string name="home.button.num.1">1</string>
+    <string name="home.button.num.2">2</string>
+    <string name="home.button.num.3">3</string>
+    <string name="home.button.num.4">4</string>
+    <string name="home.button.num.5">5</string>
+    <string name="home.button.num.6">6</string>
+    <string name="home.button.num.7">7</string>
+    <string name="home.button.num.8">8</string>
+    <string name="home.button.num.9">9</string>
+    <string name="home.description.backspace">remove one symbol or all if hold</string>
+    <string name="home.description.add">plus operator</string>
+    <string name="home.description.sub">minus operator</string>
+    <string name="home.description.mul">mul operator</string>
+    <string name="home.description.div">divide operator</string>
+    <string name="home.description.pow">exponentiation function</string>
+    <string name="home.description.equals">equals button</string>
+    <string name="home.description.sep">dot button</string>
+    <string name="home.description.switch">button to open additional functions</string>
 
     <string name="history.title">History</string>
     <string name="history.menu.clear.button">Clear</string>

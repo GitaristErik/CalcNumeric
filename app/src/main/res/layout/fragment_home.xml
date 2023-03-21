@@ -1,23 +1,406 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presenter.fragment.home.HomeFragment">
-
-    <TextView
-        android:id="@+id/text_home"
-        style="@style/TextAppearance.Material3.DisplayLarge"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        tools:context=".presenter.fragment.home.HomeFragment">
+
+    <HorizontalScrollView
+            android:id="@+id/inputHorizontalScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline1"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingHorizontal="@dimen/activity_horizontal_margin"
+            android:background="?attr/colorPrimaryContainer"
+            android:scrollbars="none"
+            android:overScrollMode="never">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input"
+                android:textAppearance="@style/TextAppearance.Material3.DisplayMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:autofillHints="false"
+                android:inputType="textNoSuggestions"
+                android:background="?attr/colorPrimaryContainer"
+                android:singleLine="true"
+                android:text=""
+                android:textAlignment="textEnd"
+                android:textColor="?attr/colorOnSurface" />
+
+    </HorizontalScrollView>
+
+    <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/resultDisplay"
+            style="@style/TextAppearance.Material3.HeadlineLarge"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scrollHorizontally="true"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:text=""
+            android:focusable="false"
+            android:paddingBottom="@dimen/padding.standard"
+            android:singleLine="true"
+            android:paddingHorizontal="@dimen/activity_horizontal_margin"
+            android:backgroundTint="?attr/colorPrimaryContainer"
+            android:background="@drawable/background_home_result"
+            android:inputType="textNoSuggestions"
+            android:textAlignment="textEnd"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+
+    <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingHorizontal="@dimen/activity_horizontal_margin"
+            android:weightSum="100"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resultDisplay"
+            android:paddingTop="@dimen/padding.small">
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:layout_marginBottom="1dp">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnPow"
+                    style="@style/CalculatorButton.Function"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_power"
+                    android:contentDescription="@string/home.description.pow" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSquare"
+                    style="@style/CalculatorButton.Function"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.function.sqrt" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPi"
+                    style="@style/CalculatorButton.Function"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.function.pi" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFactorial"
+                    style="@style/CalculatorButton.Function"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.function.fact" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnE"
+                    style="@style/CalculatorButton.Function"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.function.e" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSwitchAdditional"
+                    android:theme="@style/Widget.Material3.Button.Icon"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:iconGravity="end"
+                    android:layout_gravity="center"
+                    app:icon="@drawable/ic_arrow_down_24dp"
+                    app:iconTint="?attr/colorOnSurface"
+                    app:backgroundTint="?attr/colorSurface"
+                    android:background="@drawable/background_circle"
+                    android:contentDescription="@string/home.description.switch" />
+
+        </TableRow>
+
+        <TableRow
+                android:id="@+id/menuAdditional"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_marginBottom="@dimen/margin.small">
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSin"
+                    style="@style/CalculatorButton.Function.Additional"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.function.sin" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCos"
+                    style="@style/CalculatorButton.Function.Additional"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.function.cos" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTan"
+                    style="@style/CalculatorButton.Function.Additional"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.function.tan" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLn"
+                    style="@style/CalculatorButton.Function.Additional"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.function.ln" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLog"
+                    style="@style/CalculatorButton.Function.Additional"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.function.log" />
+
+
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="18">
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnParenthesesOpen"
+                    style="@style/CalculatorButton.Secondary"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="0dp"
+                    android:text="@string/home.button.parentheses.open" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnParenthesesClose"
+                    style="@style/CalculatorButton.Secondary"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.parentheses.close" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPercent"
+                    style="@style/CalculatorButton.Secondary"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:text="@string/home.button.function.percent" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnDivide"
+                    style="@style/CalculatorButton.Operator"
+                    android:contentDescription="@string/home.description.div"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="0dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_divide" />
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="18">
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn7"
+                    style="@style/CalculatorButton.Numpad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.num.7" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn8"
+                    style="@style/CalculatorButton.Numpad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.num.8" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn9"
+                    style="@style/CalculatorButton.Numpad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.num.9" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnMultiply"
+                    style="@style/CalculatorButton.Operator"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="0dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/home.description.mul"
+                    app:srcCompat="@drawable/ic_multiply" />
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="18">
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn4"
+                    style="@style/CalculatorButton.Numpad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.num.4" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn5"
+                    style="@style/CalculatorButton.Numpad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.num.5" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn6"
+                    style="@style/CalculatorButton.Numpad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.num.6" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnSubtract"
+                    style="@style/CalculatorButton.Operator"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="0dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/home.description.sub"
+                    app:srcCompat="@drawable/ic_subtract" />
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="18">
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn1"
+                    style="@style/CalculatorButton.Numpad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.num.1" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn2"
+                    style="@style/CalculatorButton.Numpad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.num.2" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn3"
+                    style="@style/CalculatorButton.Numpad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.num.3" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnAdd"
+                    style="@style/CalculatorButton.Operator"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="0dp"
+                    android:contentDescription="@string/home.description.add"
+                    app:srcCompat="@drawable/ic_add" />
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="18">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnSeparator"
+                    style="@style/CalculatorButton.Numpad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/home.description.sep"
+                    app:srcCompat="@drawable/ic_dot" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn0"
+                    style="@style/CalculatorButton.Numpad"
+                    android:layout_marginStart="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/home.button.num.0" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnBackspace"
+                    style="@style/CalculatorButton.Danger"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/home.description.backspace"
+                    app:srcCompat="@drawable/ic_backspace" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnEquals"
+                    style="@style/CalculatorButton.Primary"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="0dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/home.description.equals"
+                    app:srcCompat="@drawable/ic_equals" />
+        </TableRow>
+    </TableLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.28" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
