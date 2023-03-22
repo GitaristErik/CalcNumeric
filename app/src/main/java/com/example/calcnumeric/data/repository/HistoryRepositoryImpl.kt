@@ -1,7 +1,7 @@
 package com.example.calcnumeric.data.repository
 
-import com.example.calcnumeric.domain.model.History
-import com.example.calcnumeric.domain.model.Results
+import com.example.calcnumeric.domain.entity.History
+import com.example.calcnumeric.domain.entity.Results
 import com.example.calcnumeric.domain.repository.HistoryRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,7 +18,7 @@ class HistoryRepositoryImpl @Inject constructor() : HistoryRepository {
     )
 
     init {
-        historyList.addAll(loadData())
+//        historyList.addAll(loadData())
     }
 
     override fun getAll(): Flow<Results<List<History>>> = flow {
@@ -33,8 +33,14 @@ class HistoryRepositoryImpl @Inject constructor() : HistoryRepository {
         }
     }
 
-    override fun add(history: History): Results<Unit> {
+    override fun add(expression: String, result: Number): Results<Unit> {
         return try {
+            val history = History(
+                id = historyList.size + 1,
+                date = Date().time,
+                expression = expression,
+                result = result.toString()
+            )
             historyList.add(history)
             Results.Success(Unit)
         } catch (e: Exception) {

@@ -1,9 +1,9 @@
-package com.example.calcnumeric.utils
+package com.example.calcnumeric.presenter.utils
 
 import android.content.res.Resources
 import androidx.core.os.ConfigurationCompat
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
 
 object DateFormatter {
     private const val DAY_IN_MILLIS = 1000 * 60 * 60 * 24

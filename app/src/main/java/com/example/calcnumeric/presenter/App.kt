@@ -1,9 +1,9 @@
 package com.example.calcnumeric.presenter
 
 import android.app.Application
+import com.example.calcnumeric.BuildConfig
 import com.google.android.material.color.DynamicColors
 import dagger.hilt.android.HiltAndroidApp
-import com.example.calcnumeric.BuildConfig
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 

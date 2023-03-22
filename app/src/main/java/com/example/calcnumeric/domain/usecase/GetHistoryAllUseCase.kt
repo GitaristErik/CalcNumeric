@@ -1,8 +1,8 @@
 package com.example.calcnumeric.domain.usecase
 
-import com.example.calcnumeric.domain.DispatcherProvider
-import com.example.calcnumeric.domain.model.History
-import com.example.calcnumeric.domain.model.Results
+import com.example.calcnumeric.domain.entity.History
+import com.example.calcnumeric.domain.entity.Results
+import com.example.calcnumeric.domain.helper.DispatcherProvider
 import com.example.calcnumeric.domain.repository.HistoryRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn

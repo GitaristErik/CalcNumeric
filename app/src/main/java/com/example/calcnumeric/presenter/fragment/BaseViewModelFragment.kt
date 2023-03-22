@@ -2,13 +2,9 @@ package com.example.calcnumeric.presenter.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.example.calcnumeric.presenter.BaseViewModel
-import kotlinx.coroutines.launch
 
 abstract class BaseViewModelFragment<VB : ViewBinding, VD, VM : BaseViewModel<VD>> :
     BaseFragment<VB>() {
@@ -22,17 +18,12 @@ abstract class BaseViewModelFragment<VB : ViewBinding, VD, VM : BaseViewModel<VD
     }
 
     private fun observeData() {
-        viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.data
-                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+//                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collect { render(it) }
         }
     }
 
     protected open fun render(data: VD) = Unit
-
-    @VisibleForTesting
-    fun setInitialData(initialData: VD) {
-        viewModel.setInitialData(initialData)
-    }
 }

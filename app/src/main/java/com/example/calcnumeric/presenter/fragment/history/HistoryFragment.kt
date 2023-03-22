@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.calcnumeric.R
 import com.example.calcnumeric.databinding.FragmentHistoryBinding
-import com.example.calcnumeric.domain.model.History
-import com.example.calcnumeric.domain.model.Results
+import com.example.calcnumeric.domain.entity.History
+import com.example.calcnumeric.domain.entity.Results
 import com.example.calcnumeric.presenter.fragment.BaseViewModelFragment
 import com.example.calcnumeric.presenter.fragment.history.HistoryViewModel.ViewData
 import com.example.calcnumeric.presenter.fragment.history.adapter.HistoryAdapter

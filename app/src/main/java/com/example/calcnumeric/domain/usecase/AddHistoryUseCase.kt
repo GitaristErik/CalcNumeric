@@ -4,8 +4,9 @@ import com.example.calcnumeric.domain.entity.Results
 import com.example.calcnumeric.domain.repository.HistoryRepository
 import javax.inject.Inject
 
-open class DeleteHistoryByIdUseCase @Inject constructor(
+open class AddHistoryUseCase @Inject constructor(
     private val historyRepository: HistoryRepository
 ) {
-    open suspend operator fun invoke(id: Int): Results<Unit> = historyRepository.deleteById(id)
+    open suspend operator fun invoke(expression: String, result: Number): Results<Unit> =
+        historyRepository.add(expression, result)
 }

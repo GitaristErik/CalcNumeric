@@ -1,4 +1,4 @@
-package com.example.calcnumeric.domain.model
+package com.example.calcnumeric.domain.entity
 
 data class History(
     val id: Int,

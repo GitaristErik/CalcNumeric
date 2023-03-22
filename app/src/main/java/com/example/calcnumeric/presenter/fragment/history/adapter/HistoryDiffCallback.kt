@@ -2,7 +2,7 @@ package com.example.calcnumeric.presenter.fragment.history.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.calcnumeric.presenter.model.HistoryUiModel
-import com.example.calcnumeric.utils.DateFormatter
+import com.example.calcnumeric.presenter.utils.DateFormatter
 
 object HistoryDiffCallback : DiffUtil.ItemCallback<HistoryUiModel>() {
     override fun areItemsTheSame(oldItem: HistoryUiModel, newItem: HistoryUiModel): Boolean {

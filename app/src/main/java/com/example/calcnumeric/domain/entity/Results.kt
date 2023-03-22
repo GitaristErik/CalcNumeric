@@ -1,4 +1,5 @@
-package com.example.calcnumeric.domain.model
+package com.example.calcnumeric.domain.entity
+
 sealed class Results<out T> {
     data class Loading<out T>(val oldData: T? = null) : Results<T>()
     data class Success<out T>(val data: T) : Results<T>()

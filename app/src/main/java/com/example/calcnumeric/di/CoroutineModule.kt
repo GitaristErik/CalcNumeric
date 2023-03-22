@@ -1,6 +1,6 @@
 package com.example.calcnumeric.di
 
-import com.example.calcnumeric.domain.DispatcherProvider
+import com.example.calcnumeric.domain.helper.DispatcherProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

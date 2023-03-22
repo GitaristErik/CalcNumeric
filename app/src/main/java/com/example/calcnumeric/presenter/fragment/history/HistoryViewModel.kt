@@ -1,8 +1,8 @@
 package com.example.calcnumeric.presenter.fragment.history
 
-import com.example.calcnumeric.domain.DispatcherProvider
-import com.example.calcnumeric.domain.model.History
-import com.example.calcnumeric.domain.model.Results
+import com.example.calcnumeric.domain.entity.History
+import com.example.calcnumeric.domain.entity.Results
+import com.example.calcnumeric.domain.helper.DispatcherProvider
 import com.example.calcnumeric.domain.usecase.ClearHistoryUseCase
 import com.example.calcnumeric.domain.usecase.DeleteHistoryByIdUseCase
 import com.example.calcnumeric.domain.usecase.GetHistoryAllUseCase
@@ -10,7 +10,7 @@ import com.example.calcnumeric.domain.usecase.RestoreHistoryUseCase
 import com.example.calcnumeric.presenter.BaseViewModel
 import com.example.calcnumeric.presenter.fragment.history.HistoryViewModel.ViewData
 import com.example.calcnumeric.presenter.model.HistoryUiModel
-import com.example.calcnumeric.utils.DateFormatter
+import com.example.calcnumeric.presenter.utils.DateFormatter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject

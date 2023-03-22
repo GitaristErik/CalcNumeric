@@ -1,6 +1,8 @@
 package com.example.calcnumeric.di
 
+import com.example.calcnumeric.data.repository.CalculatorRepositoryImpl
 import com.example.calcnumeric.data.repository.HistoryRepositoryImpl
+import com.example.calcnumeric.domain.repository.CalculatorRepository
 import com.example.calcnumeric.domain.repository.HistoryRepository
 import dagger.Module
 import dagger.Provides
@@ -15,4 +17,8 @@ internal object DataModule {
     @Singleton
     @Provides
     fun provideHistoryRepository(impl: HistoryRepositoryImpl): HistoryRepository = impl
+
+    @Singleton
+    @Provides
+    fun provideCalculatorRepository(impl: CalculatorRepositoryImpl): CalculatorRepository = impl
 }

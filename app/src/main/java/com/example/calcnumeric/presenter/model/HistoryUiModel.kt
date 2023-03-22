@@ -1,6 +1,6 @@
 package com.example.calcnumeric.presenter.model
 
-import com.example.calcnumeric.domain.model.History
+import com.example.calcnumeric.domain.entity.History
 
 sealed class HistoryUiModel {
     data class ContentModel(

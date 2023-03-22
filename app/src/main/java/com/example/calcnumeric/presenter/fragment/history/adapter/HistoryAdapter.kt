@@ -13,7 +13,7 @@ import com.example.calcnumeric.R
 import com.example.calcnumeric.databinding.FragmentHistoryItemBinding
 import com.example.calcnumeric.databinding.FragmentHistoryItemHeaderBinding
 import com.example.calcnumeric.presenter.model.HistoryUiModel
-import com.example.calcnumeric.utils.DateFormatter
+import com.example.calcnumeric.presenter.utils.DateFormatter
 
 class HistoryAdapter(
     private val itemClickListener: HistoryItemClickListener,

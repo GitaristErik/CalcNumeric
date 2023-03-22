@@ -25,7 +25,11 @@
                 android:layout_height="match_parent"
                 android:autofillHints="false"
                 android:inputType="textNoSuggestions"
+                android:textIsSelectable="false"
+                android:focusable="false"
+                android:clickable="false"
                 android:background="?attr/colorPrimaryContainer"
+                android:layout_gravity="end"
                 android:singleLine="true"
                 android:text=""
                 android:textAlignment="textEnd"
@@ -377,7 +381,7 @@
                     app:srcCompat="@drawable/ic_backspace" />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btnEquals"
+                    android:id="@+id/btnEqual"
                     style="@style/CalculatorButton.Primary"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
