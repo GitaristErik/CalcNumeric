@@ -45,6 +45,12 @@ class HomeFragment : BaseViewModelFragment<FragmentHomeBinding, ViewData, HomeVi
     @SuppressLint("SetTextI18n")
     override fun initializeView() {
         initSwitchMenu()
+
+        arguments?.run {
+            getString("expression")?.let { input = it }
+            getString("result")?.let { result = it }
+        }
+
         with(binding) {
             mapOf(
                 btn0 to "0",

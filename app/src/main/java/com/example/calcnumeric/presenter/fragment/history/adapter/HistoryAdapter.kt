@@ -100,13 +100,20 @@ class HistoryAdapter(
             binding.run {
                 listOf<View>(
                     root,
-                    answer,
+                    viewMainContainer,
+                    viewMain,
                     expression,
-                    viewMain.rootView,
-                    viewMainContainer.rootView,
+                    answer,
                 ).forEach {
                     it.setOnClickListener(this@ContentViewHolder)
                 }
+            }
+        }
+
+        private fun setupViews(view: View, countRepeat: Int = 1, action: (View) -> Unit) {
+            if (countRepeat > 0) {
+                action(view)
+                setupViews(view.rootView, countRepeat - 1, action)
             }
         }
     }

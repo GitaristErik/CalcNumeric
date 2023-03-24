@@ -11,6 +11,7 @@ import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.calcnumeric.R
@@ -37,8 +38,7 @@ class HistoryFragment :
     private val historyAdapter by lazy {
         HistoryAdapter(
             itemClickListener = {
-                log.d("clicked: $it")
-                viewModel.setClickedExpression(it.expression)
+                onClickExpression(it)
             },
             itemRemovedListener = {
                 viewModel.deleteHistoryByExpression(it.expression)
@@ -146,5 +146,13 @@ class HistoryFragment :
         val history = historyAdapter.getHistoryFromId(position)
         historyAdapter.onRemoved(history)
         return true
+    }
+
+    private fun onClickExpression(history: History) {
+        binding.root.findNavController().navigate(
+            HistoryFragmentDirections.actionHistoryToHome(
+                history.expression, history.result
+            )
+        )
     }
 }

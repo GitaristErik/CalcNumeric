@@ -105,10 +105,6 @@ class HistoryViewModel @Inject constructor(
         insertHistory(history)
     }
 
-    fun setClickedExpression(expression: String) {
-        log.d("call with expression: $expression")
-    }
-
     private fun transformHistoryUiModels(
         historyItems: List<History>
     ): List<HistoryUiModel> {
