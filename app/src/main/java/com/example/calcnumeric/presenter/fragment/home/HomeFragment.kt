@@ -14,6 +14,8 @@ import com.example.calcnumeric.domain.entity.Results
 import com.example.calcnumeric.domain.entity.Results.Companion.anyData
 import com.example.calcnumeric.presenter.fragment.BaseViewModelFragment
 import com.example.calcnumeric.presenter.fragment.home.HomeViewModel.ViewData
+import com.example.calcnumeric.presenter.fragment.home.OnClickWrapper.lastPressedId
+import com.example.calcnumeric.presenter.fragment.home.OnClickWrapper.setOnClickListenerWrapped
 import com.example.calcnumeric.presenter.utils.NumberFormatter
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,13 +40,11 @@ class HomeFragment : BaseViewModelFragment<FragmentHomeBinding, ViewData, HomeVi
             binding.input.setText(value)
         }
 
-    private var lastPressedView: View? = null
     private var lastCommand: String = ""
 
     @SuppressLint("SetTextI18n")
     override fun initializeView() {
         initSwitchMenu()
-
         with(binding) {
             mapOf(
                 btn0 to "0",
@@ -77,19 +77,17 @@ class HomeFragment : BaseViewModelFragment<FragmentHomeBinding, ViewData, HomeVi
                 btnE to "e",
             )
         }.forEach { (view, value) ->
-            view.setOnClickListener {
+            view.setOnClickListenerWrapped {
                 lastCommand = value
                 val expression =
-                    if (lastPressedView == binding.btnEqual && value.last().isDigit()) value
+                    if (lastPressedId == binding.btnEqual.id && value.last().isDigit()) value
                     else input + value
                 input = expression
                 viewModel.calculate(expression)
-                lastPressedView = it
             }
         }
 
         binding.btnBackspace.setOnClickListener {
-            lastPressedView = it
             val lastCommand = lastCommand
             val expression = input.dropLast(lastCommand.length)
             input = expression
@@ -97,14 +95,12 @@ class HomeFragment : BaseViewModelFragment<FragmentHomeBinding, ViewData, HomeVi
         }
 
         binding.btnBackspace.setOnLongClickListener {
-            lastPressedView = it
             input = ""
             viewModel.calculate("")
             true
         }
 
-        binding.btnEqual.setOnClickListener { it ->
-            lastPressedView = it
+        binding.btnEqual.setOnClickListenerWrapped {
             if (result.isNotEmpty()) {
                 viewModel.calculate(input, true)
                 input = result
@@ -114,7 +110,9 @@ class HomeFragment : BaseViewModelFragment<FragmentHomeBinding, ViewData, HomeVi
     }
 
     override fun render(data: ViewData) {
-        if (data.result is Results.Failure && lastPressedView == binding.btnEqual) {
+        if (data.result is Results.Failure &&
+            lastPressedId == binding.btnEqual.id
+        ) {
             input = data.expression
             result = Double.NaN.toString()
             Toast.makeText(
