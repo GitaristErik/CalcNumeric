@@ -79,12 +79,12 @@ class HomeFragment : BaseViewModelFragment<FragmentHomeBinding, ViewData, HomeVi
         }.forEach { (view, value) ->
             view.setOnClickListener {
                 lastCommand = value
-                lastPressedView = it
                 val expression =
                     if (lastPressedView == binding.btnEqual && value.last().isDigit()) value
                     else input + value
                 input = expression
                 viewModel.calculate(expression)
+                lastPressedView = it
             }
         }
 
