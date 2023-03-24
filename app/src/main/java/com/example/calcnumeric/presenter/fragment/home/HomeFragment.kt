@@ -14,6 +14,7 @@ import com.example.calcnumeric.domain.entity.Results
 import com.example.calcnumeric.domain.entity.Results.Companion.anyData
 import com.example.calcnumeric.presenter.fragment.BaseViewModelFragment
 import com.example.calcnumeric.presenter.fragment.home.HomeViewModel.ViewData
+import com.example.calcnumeric.presenter.utils.NumberFormatter
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -127,14 +128,7 @@ class HomeFragment : BaseViewModelFragment<FragmentHomeBinding, ViewData, HomeVi
     }
 
     private fun updateResult(result: Number) {
-        this.result = numberFormat(result)
-    }
-
-    private fun numberFormat(number: Number): String {
-        return String.format(
-            "%.10f",
-            number.toDouble()
-        ).dropLastWhile { it in arrayOf('0', '.') }
+        this.result = NumberFormatter.format(result)
     }
 
     private fun initSwitchMenu() {

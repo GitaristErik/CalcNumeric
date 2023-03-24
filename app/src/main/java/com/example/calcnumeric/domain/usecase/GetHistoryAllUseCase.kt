@@ -12,7 +12,7 @@ open class GetHistoryAllUseCase @Inject constructor(
     private val historyRepository: HistoryRepository,
     private val dispatcher: DispatcherProvider
 ) {
-    open suspend operator fun invoke(): Flow<Results<List<History>>> = historyRepository
-        .getAll()
+    open suspend operator fun invoke(): Flow<Results<List<History>>> =
+        historyRepository.getAll()
         .flowOn(dispatcher.io())
 }

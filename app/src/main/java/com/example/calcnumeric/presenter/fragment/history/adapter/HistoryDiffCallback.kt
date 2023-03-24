@@ -8,7 +8,7 @@ object HistoryDiffCallback : DiffUtil.ItemCallback<HistoryUiModel>() {
     override fun areItemsTheSame(oldItem: HistoryUiModel, newItem: HistoryUiModel): Boolean {
         val isSameContent = oldItem is HistoryUiModel.ContentModel
                 && newItem is HistoryUiModel.ContentModel
-                && oldItem.id == newItem.id
+                && oldItem.expression == newItem.expression
 
         val isSameHeader = oldItem is HistoryUiModel.HeaderModel
                 && newItem is HistoryUiModel.HeaderModel

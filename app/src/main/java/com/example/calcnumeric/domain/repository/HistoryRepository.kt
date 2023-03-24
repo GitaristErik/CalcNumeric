@@ -6,15 +6,12 @@ import kotlinx.coroutines.flow.Flow
 
 interface HistoryRepository {
 
-    fun getAll(): Flow<Results<List<History>>>
+    suspend fun getAll(): Flow<Results<List<History>>>
 
-    fun getById(id: Int): Results<History>
+    suspend fun insert(history: History): Results<Unit>
 
-    fun add(expression: String, result: Number): Results<Unit>
+    suspend fun deleteAll(): Results<Unit>
 
-    fun deleteAll(): Results<Unit>
+    suspend fun deleteByExpression(expression: String): Results<Unit>
 
-    fun deleteById(id: Int): Results<Unit>
-
-    fun restore(history: History): Results<Unit>
 }

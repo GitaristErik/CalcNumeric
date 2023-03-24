@@ -1,11 +1,13 @@
 package com.example.calcnumeric.domain.usecase
 
+import com.example.calcnumeric.domain.entity.History
 import com.example.calcnumeric.domain.entity.Results
 import com.example.calcnumeric.domain.repository.HistoryRepository
 import javax.inject.Inject
 
-open class DeleteHistoryByIdUseCase @Inject constructor(
+open class InsertHistoryUseCase @Inject constructor(
     private val historyRepository: HistoryRepository
 ) {
-    open suspend operator fun invoke(id: Int): Results<Unit> = historyRepository.deleteById(id)
+    open suspend operator fun invoke(history: History): Results<Unit> =
+        historyRepository.insert(history)
 }

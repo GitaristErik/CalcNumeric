@@ -1,41 +1,38 @@
 package com.example.calcnumeric.presenter.fragment.history
 
+import androidx.lifecycle.viewModelScope
 import com.example.calcnumeric.domain.entity.History
 import com.example.calcnumeric.domain.entity.Results
 import com.example.calcnumeric.domain.helper.DispatcherProvider
 import com.example.calcnumeric.domain.usecase.ClearHistoryUseCase
-import com.example.calcnumeric.domain.usecase.DeleteHistoryByIdUseCase
+import com.example.calcnumeric.domain.usecase.DeleteHistoryByExpressionUseCase
 import com.example.calcnumeric.domain.usecase.GetHistoryAllUseCase
-import com.example.calcnumeric.domain.usecase.RestoreHistoryUseCase
+import com.example.calcnumeric.domain.usecase.InsertHistoryUseCase
 import com.example.calcnumeric.presenter.BaseViewModel
 import com.example.calcnumeric.presenter.fragment.history.HistoryViewModel.ViewData
 import com.example.calcnumeric.presenter.model.HistoryUiModel
 import com.example.calcnumeric.presenter.utils.DateFormatter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HistoryViewModel @Inject constructor(
     private val getHistoryListUseCase: GetHistoryAllUseCase,
-    private val deleteHistoryByIdUseCase: DeleteHistoryByIdUseCase,
+    private val deleteHistoryByExpressionUseCase: DeleteHistoryByExpressionUseCase,
     private val clearHistoryUseCase: ClearHistoryUseCase,
-    private val restoreHistoryUseCase: RestoreHistoryUseCase,
+    private val insertHistoryUseCase: InsertHistoryUseCase,
     private val dispatcher: DispatcherProvider
 ) : BaseViewModel<ViewData>(ViewData()) {
 
     init {
         log.d("init")
-        reload()
-    }
-
-    fun reload() {
-        log.d("reload")
         fetch()
     }
 
     private fun fetch() {
-        safeRunJob(dispatcher.default()) {
+        viewModelScope.launch(dispatcher.io()) {
             getHistoryListUseCase().collect { result ->
                 when (result) {
                     is Results.Success -> {
@@ -72,57 +69,40 @@ class HistoryViewModel @Inject constructor(
 
     fun clearHistory() = safeRunJob(dispatcher.default()) {
         log.d("call")
-        when (clearHistoryUseCase()) {
-            is Results.Success -> {
-                log.d("clear success")
-                fetch()
-            }
-
-            is Results.Failure -> {
-                log.d("clear failed")
-            }
-
-            is Results.Loading -> {
-                log.d("clear loading")
+        clearHistoryUseCase().let {
+            when (it) {
+                is Results.Success -> log.d("clear success")
+                is Results.Failure -> log.d("clear failed: ${it.throwable.message}")
+                is Results.Loading -> log.d("clear loading")
             }
         }
     }
 
-
-    fun deleteHistoryById(id: Int) = safeRunJob(dispatcher.default()) {
-        log.d("call with id: $id")
-        when (deleteHistoryByIdUseCase(id)) {
-            is Results.Success -> {
-                log.d("delete success")
-                fetch()
-            }
-
-            is Results.Failure -> {
-                log.d("delete failed")
-            }
-
-            is Results.Loading -> {
-                log.d("delete loading")
+    fun deleteHistoryByExpression(expression: String) = safeRunJob(dispatcher.default()) {
+        log.d("call with id: $expression")
+        deleteHistoryByExpressionUseCase(expression).let {
+            when (it) {
+                is Results.Success -> log.d("delete success")
+                is Results.Failure -> log.d("delete failed: ${it.throwable.message}")
+                is Results.Loading -> log.d("delete loading")
             }
         }
     }
 
-    fun restoreHistory(history: History) = safeRunJob(dispatcher.default()) {
+    fun insertHistory(history: History) = safeRunJob(dispatcher.default()) {
         log.d("call with history: $history")
-        when (restoreHistoryUseCase(history)) {
-            is Results.Success -> {
-                log.d("restore success")
-                fetch()
-            }
-
-            is Results.Failure -> {
-                log.d("restore failed")
-            }
-
-            is Results.Loading -> {
-                log.d("restore loading")
+        insertHistoryUseCase(history).let {
+            when (it) {
+                is Results.Success -> log.d("insert success")
+                is Results.Failure -> log.d("insert failed: ${it.throwable.message}")
+                is Results.Loading -> log.d("insert loading")
             }
         }
+    }
+
+    fun restoreHistory(history: History) {
+        log.d("call with history: $history")
+        insertHistory(history)
     }
 
     fun setClickedExpression(expression: String) {

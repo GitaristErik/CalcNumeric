@@ -41,7 +41,7 @@ class HistoryFragment :
                 viewModel.setClickedExpression(it.expression)
             },
             itemRemovedListener = {
-                viewModel.deleteHistoryById(it.id)
+                viewModel.deleteHistoryByExpression(it.expression)
                 showRestoreSnackbar(it)
             }
         )
@@ -87,13 +87,8 @@ class HistoryFragment :
                 }
             }
 
-            is Results.Loading -> {
-                log.d("loading: ${data.uiData}")
-            }
-
-            is Results.Failure -> {
-                log.d("error: ${data.uiData}")
-            }
+            is Results.Loading -> log.d("loading: ${data.uiData}")
+            is Results.Failure -> log.d("error: ${data.uiData}")
         }
     }
 
@@ -143,7 +138,7 @@ class HistoryFragment :
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.history_menu, menu)
             }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        }, viewLifecycleOwner, Lifecycle.State.CREATED)
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
