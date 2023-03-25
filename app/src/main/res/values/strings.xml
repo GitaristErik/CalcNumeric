@@ -15,16 +15,16 @@
     <string name="home.button.parentheses.open" translatable="false">(</string>
     <string name="home.button.parentheses.close" translatable="false">)</string>
     <string name="home.button.num.sep" translatable="false">.</string>
-    <string name="home.button.num.0">0</string>
-    <string name="home.button.num.1">1</string>
-    <string name="home.button.num.2">2</string>
-    <string name="home.button.num.3">3</string>
-    <string name="home.button.num.4">4</string>
-    <string name="home.button.num.5">5</string>
-    <string name="home.button.num.6">6</string>
-    <string name="home.button.num.7">7</string>
-    <string name="home.button.num.8">8</string>
-    <string name="home.button.num.9">9</string>
+    <string name="home.button.num.0" translatable="false">0</string>
+    <string name="home.button.num.1" translatable="false">1</string>
+    <string name="home.button.num.2" translatable="false">2</string>
+    <string name="home.button.num.3" translatable="false">3</string>
+    <string name="home.button.num.4" translatable="false">4</string>
+    <string name="home.button.num.5" translatable="false">5</string>
+    <string name="home.button.num.6" translatable="false">6</string>
+    <string name="home.button.num.7" translatable="false">7</string>
+    <string name="home.button.num.8" translatable="false">8</string>
+    <string name="home.button.num.9" translatable="false">9</string>
     <string name="home.description.backspace">remove one symbol or all if hold</string>
     <string name="home.description.add">plus operator</string>
     <string name="home.description.sub">minus operator</string>
@@ -40,11 +40,16 @@
     <string name="history.item.header.today">Today</string>
     <string name="history.item.menu.delete.button">Delete</string>
     <string name="history.item.swipe.undo.title">Expression was removed</string>
-    <string name="history.item.swipe.undo.button">UNDO</string>
+    <string name="history.item.swipe.undo.button" translatable="false">UNDO</string>
     <string name="history.no_history.title">No History</string>
     <string name="history.modal.message">All history will be deleted. Do you want to proceed?</string>
     <string name="history.modal.title">Delete History</string>
     <string name="history.modal.cancel">Cancel</string>
 
     <string name="settings.title">Settings</string>
+    <string name="settings.category.theme">Theme</string>
+    <string name="settings.category.other">Other</string>
+    <string name="settings.theme.title">Select theme</string>
+    <string name="settings.language.title">Select language</string>
+
 </resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CalcNumeric</string>
+    <string name="home.title">Домашня</string>
+    <string name="history.title">Історія</string>
+    <string name="history.menu.clear.button">Очистити</string>
+    <string name="history.item.header.today">Сьогодні</string>
+    <string name="history.item.menu.delete.button">Видалити</string>
+    <string name="history.item.swipe.undo.title">Вираз видалено</string>
+    <string name="history.no_history.title">Історія порожня</string>
+    <string name="history.modal.message">Всю історію буде видалено, ви бажате продовжити?</string>
+    <string name="history.modal.title">Видалити історію</string>
+    <string name="history.modal.cancel">Відміна</string>
+    <string name="settings.title">Налаштування</string>
+    <string name="settings.category.theme">Тема</string>
+    <string name="settings.category.other">Інше</string>
+    <string name="settings.theme.title">Обрати тему</string>
+    <string name="settings.language.title">Обрати мову</string>
+    <string name="home.description.backspace">символ видалення</string>
+    <string name="home.description.add">+</string>
+    <string name="home.description.sub">-</string>
+    <string name="home.description.mul">*</string>
+    <string name="home.description.div">/</string>
+    <string name="home.description.pow">е</string>
+    <string name="home.description.equals">=</string>
+    <string name="home.description.sep">.</string>
+    <string name="home.description.switch">додаткові функції</string>
+</resources>

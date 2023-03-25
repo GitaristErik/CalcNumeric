@@ -98,6 +98,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
 
+    // Settings
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+
     // Timber
     implementation "com.jakewharton.timber:timber:$timberVersion"
 

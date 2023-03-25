@@ -1,33 +1,35 @@
 package com.example.calcnumeric.presenter.fragment.settings
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import com.example.calcnumeric.databinding.FragmentSettingsBinding
-import com.example.calcnumeric.presenter.fragment.BaseViewModelFragment
-import com.example.calcnumeric.presenter.fragment.settings.SettingsViewModel.ViewData
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.lifecycle.lifecycleScope
+import androidx.preference.ListPreference
+import androidx.preference.PreferenceFragmentCompat
+import com.example.calcnumeric.R
+import kotlinx.coroutines.launch
 
 
-@AndroidEntryPoint
-class SettingsFragment :
-    BaseViewModelFragment<FragmentSettingsBinding, ViewData, SettingsViewModel>() {
+class SettingsFragment : PreferenceFragmentCompat() {
 
-    override val viewModel: SettingsViewModel by viewModels()
+    private val languageService: LanguageService by lazy { LanguageService(resources) }
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSettingsBinding
-        get() = FragmentSettingsBinding::inflate
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.root_preferences, rootKey)
+        lifecycleScope.launch {
+            setupLanguagePreference()
+        }
     }
 
-    override fun initializeView() {
-        log.d("initializeView")
-    }
-
-    override fun render(data: ViewData) {
-        log.d("render")
+    private fun setupLanguagePreference() {
+        findPreference<ListPreference>("language")!!.apply {
+            entries = languageService.languageNames.toTypedArray()
+            entryValues = languageService.languageTags.toTypedArray()
+            val language = languageService.defaultLanguage
+            setDefaultValue(language.toLanguageTag())
+            summary = language.displayName
+        }.setOnPreferenceChangeListener { _, value ->
+//            LanguageService.saveAndSetLanguage(requireContext(), value as String)
+            LanguageService.setLanguage(value as String)
+            true
+        }
     }
 }
