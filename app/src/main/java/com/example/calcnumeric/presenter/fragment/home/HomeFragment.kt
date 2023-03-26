@@ -47,7 +47,10 @@ class HomeFragment : BaseViewModelFragment<FragmentHomeBinding, ViewData, HomeVi
         initSwitchMenu()
 
         arguments?.run {
-            getString("expression")?.let { input = it }
+            getString("expression")?.let {
+                input = it
+                viewModel.calculate(it)
+            }
             getString("result")?.let { result = it }
         }
 

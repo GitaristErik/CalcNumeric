@@ -2,14 +2,13 @@
 <com.google.android.material.textview.MaterialTextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/date_header"
-    style="@style/Widget.Material3.Button.TextButton"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="start|bottom"
+    android:layout_marginTop="@dimen/margin.standard"
+    android:layout_marginBottom="@dimen/margin.small"
     android:padding="0dp"
-    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-    android:textStyle="bold"
-    android:visibility="gone"
+    android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+    android:textColor="?attr/colorSecondary"
     tools:text="03-06-2002"
     tools:visibility="visible" />
 
