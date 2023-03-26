@@ -73,14 +73,12 @@ class LanguageService(private val resources: Resources) {
         private const val KEY = "language"
 
         /**
-         * @param languageService
          * @param context
          * @param languageTag
          * Save language tag to shared preferences and set language
          */
         @JvmStatic
         fun saveAndSetLanguage(
-            languageService: LanguageService,
             context: Context,
             languageTag: String
         ) {
@@ -89,12 +87,11 @@ class LanguageService(private val resources: Resources) {
         }
 
         /**
-         * @param languageService
          * @param context
          * Load language tag from shared preferences and set language
          */
         @JvmStatic
-        fun loadAndSetLanguage(languageService: LanguageService, context: Context) {
+        fun loadAndSetLanguage(context: Context) {
             val languageTag = loadLanguage(context)
             setLanguage(languageTag)
         }
