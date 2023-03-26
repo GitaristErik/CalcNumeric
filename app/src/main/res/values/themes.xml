@@ -56,13 +56,14 @@
     </style>
 
 
-    <!-- Monet theme -->
     <style name="AppTheme.Monet" parent="Theme.Material3.DynamicColors.DayNight">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
+        <item name="android:fitsSystemWindows">false</item>
         <item name="windowNoTitle">true</item>
-<!--        <item name="android:windowTranslucentStatus">true</item>-->
-        <!--        <item name="android:windowTranslucentNavigation">false</item>-->
         <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogMonet</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
