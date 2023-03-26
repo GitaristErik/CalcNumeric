@@ -6,6 +6,6 @@ object NumberFormatter {
         return String.format(
             "%.10f",
             number.toDouble()
-        ).dropLastWhile { it in arrayOf('0', '.') }
+        ).dropLastWhile { it in arrayOf('0', '.', ',') }
     }
 }
