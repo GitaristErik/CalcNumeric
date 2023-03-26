@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="themes">
+        <item>System default</item>
+        <item>Monet (Material 3 You)</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string-array name="themeValues">
+        <item>system</item>
+        <item>monet</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+</resources>

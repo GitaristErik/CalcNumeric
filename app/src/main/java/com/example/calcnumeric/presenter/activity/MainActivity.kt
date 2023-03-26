@@ -2,13 +2,13 @@ package com.example.calcnumeric.presenter.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.calcnumeric.R
 import com.example.calcnumeric.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.color.DynamicColors
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -21,10 +21,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Timber.d("onCreate")
 
-        DynamicColors.applyToActivityIfAvailable(this)
+//        setTheme(R.style.AppTheme_Monet)
+//        DynamicColors.applyToActivityIfAvailable(this)
+//        window.navigationBarColor = SurfaceColors.SURFACE_2.getColor(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController() ?: return

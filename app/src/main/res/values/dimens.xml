@@ -22,4 +22,5 @@
     <!-- Other -->
     <item name="icon.scale" type="dimen" format="float">0.7</item>
     <item name="icon.translate" type="dimen" format="float">3.5</item>
+    <dimen name="rounded_corners">16dp</dimen>
 </resources>

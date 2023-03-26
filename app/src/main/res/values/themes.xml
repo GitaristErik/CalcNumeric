@@ -1,6 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Base.Theme.CalcNumeric" parent="Theme.Material3.Light.NoActionBar">
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="AppTheme.Extended" />
+
+    <style name="AppTheme.Base" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color -->
         <item name="colorPrimary">@color/md_primary</item>
         <item name="colorOnPrimary">@color/md_onPrimary</item>
@@ -34,19 +37,91 @@
         <item name="colorSurfaceInverse">@color/md_inverseSurface</item>
         <item name="colorOnSurfaceInverse">@color/md_inverseOnSurface</item>
         <item name="colorPrimaryInverse">@color/md_inversePrimary</item>
-
-        <!-- Status bar color -->
-
-        <!-- Customize your theme here -->
     </style>
 
-    <style name="Theme.CalcNumeric" parent="Base.Theme.CalcNumeric">
+    <style name="AppTheme.Extended" parent="AppTheme.Base">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+        <item name="switchStyle">@style/CustomMaterialSwitch</item>
+        <item name="bottomNavigationStyle">@style/CustomBottomNavigation</item>
     </style>
 
-    <style name="HistoryLayout" parent="">
-        <item name="android:background">?attr/colorSurface</item>
+
+    <!-- Monet theme -->
+    <style name="AppTheme.Monet" parent="Theme.Material3.DynamicColors.DayNight">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="windowNoTitle">true</item>
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
+        <!--        <item name="android:windowTranslucentNavigation">false</item>-->
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogMonet</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+        <item name="switchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
+    </style>
+
+    <!-- Preference dialog theme -->
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.App</item>
+        <item name="dialogCornerRadius">@dimen/rounded_corners</item>
+        <item name="android:background">@drawable/dialog_bg_monet</item>
+    </style>
+
+    <!-- Note: shape appearance doesn't work with the preference dialogs (they're not material) -->
+    <style name="MaterialAlertDialog.App" parent="MaterialAlertDialog.Material3">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <style name="CustomBottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheet</item>
+    </style>
+
+    <style name="CustomBottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponent</item>
+        <!-- Remove the accent-ish tint -->
+        <item name="backgroundTint">?colorBackgroundFloating</item>
+    </style>
+
+    <style name="CustomBottomSheetDialogMonet" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetMonet</item>
+    </style>
+
+    <style name="CustomBottomSheetMonet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/rounded_corners</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/rounded_corners</item>
+    </style>
+
+    <!-- Bottom navigation for non-monet accents -->
+    <style name="CustomBottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="backgroundTint">@color/md_inverseOnSurface</item>
+        <!--        <item name="elevation">@dimen/m3_sys_elevation_level0</item>-->
+        <!--        <item name="itemTextColor">@drawable/bottom_navbar_item</item>-->
+    </style>
+
+    <!-- Switch for non-monet accents -->
+    <style name="CustomMaterialSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="thumbTint">?attr/colorPrimary</item>
+        <item name="thumbIconTint">?attr/colorSurface</item>
+        <item name="trackTint">?attr/colorOutline</item>
     </style>
 </resources>
