@@ -11,8 +11,9 @@ import com.example.calcnumeric.domain.repository.HistoryRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class HistoryRepositoryImpl /*@Inject constructor*/(
+class HistoryRepositoryImpl @Inject constructor(
     database: CalculatorDatabase
 ) : HistoryRepository {
 

@@ -6,6 +6,7 @@ import com.example.calcnumeric.data.repository.CalculatorRepositoryImpl
 import com.example.calcnumeric.data.repository.HistoryRepositoryImpl
 import com.example.calcnumeric.domain.repository.CalculatorRepository
 import com.example.calcnumeric.domain.repository.HistoryRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +18,15 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class DataModule {
 
+    @Singleton
+    @Binds
+    abstract fun bindHistoryRepository(impl: HistoryRepositoryImpl): HistoryRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindCalculatorRepository(impl: CalculatorRepositoryImpl): CalculatorRepository
+
+
     companion object {
         @Singleton
         @Provides
@@ -24,6 +34,7 @@ abstract class DataModule {
             @ApplicationContext context: Context
         ): CalculatorDatabase = CalculatorDatabase.initialize(context)
 
+    /*
         @Singleton
         @Provides
         fun provideHistoryRepository(
@@ -34,5 +45,6 @@ abstract class DataModule {
         @Provides
         fun provideCalculatorRepository(
         ): CalculatorRepository = CalculatorRepositoryImpl()
+    */
     }
 }
