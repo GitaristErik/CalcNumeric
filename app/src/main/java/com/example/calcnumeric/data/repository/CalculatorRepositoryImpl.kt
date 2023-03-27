@@ -3,9 +3,8 @@ package com.example.calcnumeric.data.repository
 import com.example.calcnumeric.domain.entity.Results
 import com.example.calcnumeric.domain.repository.CalculatorRepository
 import com.github.ayaanqui.expressionresolver.Resolver
-import javax.inject.Inject
 
-class CalculatorRepositoryImpl @Inject constructor() : CalculatorRepository {
+class CalculatorRepositoryImpl : CalculatorRepository {
 
     private var calculator = Resolver()
 
