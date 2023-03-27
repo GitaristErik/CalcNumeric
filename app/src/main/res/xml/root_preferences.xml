@@ -7,13 +7,11 @@
         <ListPreference
             app:key="theme"
             app:title="@string/settings.theme.title"
-            app:defaultValue="%s"
-            app:entries="@array/themes"
-            app:entryValues="@array/themeValues"
             app:iconSpaceReserved="false"
             app:icon="@drawable/ic_theme_24dp"
-            app:useSimpleSummaryProvider="true" />
-
+            app:useSimpleSummaryProvider="false" />
+        <!--
+                app:useSimpleSummaryProvider="true"-->
     </PreferenceCategory>
 
     <PreferenceCategory

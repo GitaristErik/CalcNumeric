@@ -12,8 +12,6 @@ class App : Application() {
         super.onCreate()
         if (BuildConfig.DEBUG) Timber.plant(timberTree)
         Timber.d(" ")
-
-//        DynamicColors.applyToActivitiesIfAvailable(this)
     }
 
     private val timberTree: Timber.Tree

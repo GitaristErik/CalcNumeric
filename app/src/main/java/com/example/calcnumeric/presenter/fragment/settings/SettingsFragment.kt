@@ -38,6 +38,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
         lifecycleScope.launch {
             setupLanguagePreference()
+            setupThemePreference()
         }
     }
 
@@ -45,12 +46,30 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         findPreference<ListPreference>("language")!!.apply {
             entries = languageService.languageNames.toTypedArray()
             entryValues = languageService.languageTags.toTypedArray()
-            val language = languageService.defaultLanguage
-            setDefaultValue(language.toLanguageTag())
-            summary = language.displayName
+            languageService.defaultLanguage.let {
+                setDefaultValue(it.toLanguageTag())
+                summary = it.displayName
+            }
         }.setOnPreferenceChangeListener { _, value ->
 //            LanguageService.saveAndSetLanguage(requireContext(), value as String)
             LanguageService.setLanguage(value as String)
+            true
+        }
+    }
+
+    private fun setupThemePreference() {
+        findPreference<ListPreference>("theme")!!.apply {
+            ThemeService.ThemeType.values().let { themes ->
+                entries = themes.map { it.displayName }.toTypedArray()
+                entryValues = themes.map { it.toString() }.toTypedArray()
+            }
+            ThemeService.theme.value.let {
+                setDefaultValue(it.toString())
+                summary = it.displayName
+            }
+        }.setOnPreferenceChangeListener { _, value ->
+            val themeType = ThemeService.ThemeType.valueOf(value.toString())
+            ThemeService.saveAndSetTheme(requireActivity(), themeType)
             true
         }
     }
